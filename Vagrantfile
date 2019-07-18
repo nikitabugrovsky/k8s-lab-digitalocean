@@ -17,9 +17,10 @@ Vagrant.configure('2') do |config|
     master.vm.network 'private_network', ip: '192.168.50.10'
     master.vm.hostname = 'k8s-master'
     master.vm.provision 'ansible' do |ansible|
-      ansible.playbook = 'kubernetes-setup/master-playbook.yml'
+      ansible.playbook = 'k8s-setup/master-playbook.yml'
       ansible.extra_vars = {
-        node_ip: '192.168.50.10'
+        node_ip: '192.168.50.10',
+        master_ip: '192.168.50.10'
       }
     end
   end
@@ -30,9 +31,10 @@ Vagrant.configure('2') do |config|
       node.vm.network 'private_network', ip: "192.168.50.#{i + 10}"
       node.vm.hostname = "node-#{i}"
       node.vm.provision 'ansible' do |ansible|
-        ansible.playbook = 'kubernetes-setup/node-playbook.yml'
+        ansible.playbook = 'k8s-setup/node-playbook.yml'
         ansible.extra_vars = {
-          node_ip: "192.168.50.#{i + 10}"
+          node_ip: "192.168.50.#{i + 10}",
+          master_ip: '192.168.50.10'
         }
       end
     end
