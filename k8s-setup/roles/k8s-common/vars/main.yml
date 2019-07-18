@@ -1,0 +1,13 @@
+swap_mounts:  
+  - swap
+  - none
+
+k8s_packages:
+  - kubelet 
+  - kubeadm 
+  - kubectl
+
+sysctl_params:
+  - net.ipv4.ip_forward
+  - net.bridge.bridge-nf-call-iptables
+  - net.bridge.bridge-nf-call-ip6tables

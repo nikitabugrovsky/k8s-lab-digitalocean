@@ -11,11 +11,20 @@
   yum:
     name: "{{ docker_ce_repo_pkg_name }}"
     state: present
-- name: Starting and Enabling Docker service
+- name: Start Docker
   service:
     name: "{{ docker_ce_repo_service_name }}"
     state: started
+    daemon_reload: yes
     enabled: yes
+- name: Adding Docker Daemon Custom Config
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+  notify:
+    - Restart Docker
+- name: Flush Handlers
+  meta: flush_handlers
 - name: Add vagrant user to docker group
   user:
     name: "{{ vagrant_user }}"
