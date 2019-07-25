@@ -4,4 +4,4 @@
   roles:
     - docker
     - k8s-common
-    - ks8-master
+    - k8s-master
