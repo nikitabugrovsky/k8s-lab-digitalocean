@@ -1,0 +1,6 @@
+- name: Restart Docker
+  service:
+    name: "{{ docker_ce_repo_service_name }}"
+    state: restarted
+    daemon_reload: yes
+    enabled: yes

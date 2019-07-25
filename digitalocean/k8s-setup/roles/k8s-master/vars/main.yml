@@ -1,0 +1,2 @@
+k8s_cluster_name: k8s-master
+k8s_pod_net_cidr: 10.135.0.0/16

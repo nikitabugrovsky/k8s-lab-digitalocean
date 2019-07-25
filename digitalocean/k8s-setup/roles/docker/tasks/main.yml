@@ -1,0 +1,31 @@
+- name: Installing Docker Prerequisite packages
+  yum:
+    name: "{{ docker_prerequisite_pkgs }}"
+    state: latest
+- name: Configuring docker-ce repo
+  get_url:
+    url: "{{ docker_ce_repo_url }}"
+    dest: "{{ docker_ce_repo_dst }}"
+    mode: "{{ docker_ce_repo_file_mode }}"
+- name: "Installing Docker latest version"
+  yum:
+    name: "{{ docker_ce_repo_pkg_name }}"
+    state: present
+- name: Start Docker
+  service:
+    name: "{{ docker_ce_repo_service_name }}"
+    state: started
+    daemon_reload: yes
+    enabled: yes
+- name: Adding Docker Daemon Custom Config
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+  notify:
+    - Restart Docker
+- name: Flush Handlers
+  meta: flush_handlers
+- name: Add vagrant user to docker group
+  user:
+    name: "{{ vagrant_user }}"
+    group: "{{ docker_ce_repo_group_name }}"

@@ -1,0 +1,28 @@
+- name: Adding yum repository for Kubernetes
+  yum_repository:
+    name: Kubernetes
+    description:  Kubernetes Repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey: >-
+      https://packages.cloud.google.com/yum/doc/yum-key.gpg 
+      https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    state: present
+    file: kubernetes
+- name: Install Kubernetes binaries
+  yum: 
+    name: "{{ k8s_packages }}"
+    state: present
+- name: Configure Kublet Extra Vars
+  copy:
+    dest: /etc/sysconfig/kubelet
+    content: KUBELET_EXTRA_ARGS=--node-ip={{ ansible_eth1.ipv4.address }} --cgroup-driver=systemd 
+  notify:
+    - Restart Kubelet
+- name: Start Kubelet
+  service:
+    name: kubelet
+    daemon_reload: yes
+    state: started
+    enabled: yes
