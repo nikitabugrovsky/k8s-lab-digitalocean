@@ -1,4 +1,4 @@
-- name: Sysctl Kubernetes Tweaks 
+- name: Sysctl Kubernetes Tweaks
   sysctl:
     name: "{{ item }}"
     value: '1'

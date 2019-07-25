@@ -1,0 +1,4 @@
+- name: Initialize the Kubernetes cluster using kubeadm
+  command: kubeadm init --apiserver-advertise-address="{{ ansible_eth1.ipv4.address }}" --apiserver-cert-extra-sans="{{ ansible_eth1.ipv4.address }}" --node-name {{ k8s_cluster_name }} --pod-network-cidr="{{ k8s_pod_net_cidr }}"
+  args:
+    creates: /etc/kubernetes/manifests/kube-apiserver.yaml

@@ -1,0 +1,12 @@
+- name: Start Firewalld Service Status
+  service:
+    name: firewalld
+    state: started
+  register: firewalld_status
+- name: Allow K8S Ports
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: yes
+    state: enabled
+  loop: "{{ k8s_master_ports }}"
+  when: firewalld_status.failed == false

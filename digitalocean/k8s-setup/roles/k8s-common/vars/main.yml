@@ -1,10 +1,16 @@
-swap_mounts:  
+selinux_packages:
+  - libselinux-python
+
+firewalld_packages:
+  - python-firewall
+
+swap_mounts:
   - swap
   - none
 
 k8s_packages:
-  - kubelet 
-  - kubeadm 
+  - kubelet
+  - kubeadm
   - kubectl
 
 sysctl_params:
