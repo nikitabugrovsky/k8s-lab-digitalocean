@@ -2,7 +2,3 @@
   yum:
     name: "{{ selinux_packages }}"
     state: present
-- name: Install Firewalld Ansible Module Dependencies
-  yum:
-    name: "{{ firewalld_packages }}"
-    state: present

@@ -25,7 +25,3 @@
     - Restart Docker
 - name: Flush Handlers
   meta: flush_handlers
-- name: Add vagrant user to docker group
-  user:
-    name: "{{ vagrant_user }}"
-    group: "{{ docker_ce_repo_group_name }}"

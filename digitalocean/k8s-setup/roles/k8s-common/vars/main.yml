@@ -1,9 +1,6 @@
 selinux_packages:
   - libselinux-python
 
-firewalld_packages:
-  - python-firewall
-
 swap_mounts:
   - swap
   - none
