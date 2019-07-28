@@ -1,0 +1,33 @@
+---
+  plugins:
+    - vagrant-hostmanager
+    - vagrant-digitalocean
+  hostmanager:
+    enabled: true
+    manage_guest: true
+    ignore_private_ip: false
+    include_offline: true
+  nodes:
+    master:
+      hostname: k8s-master-0
+    worker:
+      hostname:
+        - k8s-worker-0
+        - k8s-worker-1
+  provisioner:
+    - name: ansible
+      master_playbook: k8s-setup/master-playbook.yml
+      worker_playbook: k8s-setup/worker-playbook.yml
+  provider:
+    name: digital_ocean
+    private_key_path: ~/.ssh/id_rsa
+    ssh_key_name: bugron
+    box: digital_ocean
+    box_url: https://github.com/devopsgroup-io/vagrant-digitalocean/raw/master/box/digital_ocean.box
+    nfs_functional: false
+    private_networking: true
+    image: centos-7-x64
+    region: fra1
+    size: s-2vcpu-2gb
+  synced_folder:
+    type: rsync

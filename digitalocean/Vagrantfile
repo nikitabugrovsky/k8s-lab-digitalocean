@@ -1,25 +1,31 @@
+require_relative 'lib/vagrant'
+
+work_dir = File.dirname(File.expand_path(__FILE__))
+opts = vagrant_config(work_dir)
+check_plugins(opts['plugins'])
+
 Vagrant.configure("2") do |config|
-  config.hostmanager.enabled = true
-  config.hostmanager.manage_guest = true
-  config.hostmanager.ignore_private_ip = false
-  config.hostmanager.include_offline = true
-  config.vm.define "k8s-master" do |master|
-    master.vm.provider :digital_ocean do |provider, override|
-      override.ssh.private_key_path = '~/.ssh/id_rsa'
-      override.vm.box = 'digital_ocean'
-      override.vm.box_url = 'https://github.com/devopsgroup-io/vagrant-digitalocean/raw/master/box/digital_ocean.box'
-      override.nfs.functional = false
+  config.hostmanager.enabled = opts['hostmanager']['enabled']
+  config.hostmanager.manage_guest = opts['hostmanager']['manage_guest']
+  config.hostmanager.ignore_private_ip = opts['hostmanager']['ignore_private_ip']
+  config.hostmanager.include_offline = opts['hostmanager']['include_offline']
+  config.vm.define opts['nodes']['master']['hostname'] do |master|
+    master.vm.provider opts['provider']['name'].to_sym do |provider, override|
+      override.ssh.private_key_path = opts['provider']['private_key_path']
+      override.vm.box = opts['provider']['box']
+      override.vm.box_url = opts['provider']['box_url']
+      override.nfs.functional = opts['provider']['nfs_functional']
       provider.token = "#{ENV['DO_API_KEY']}"
-      provider.ssh_key_name = 'bugron'
-      provider.image = 'centos-7-x64'
-      provider.region = 'fra1'
-      provider.size =  's-2vcpu-2gb'
-      provider.private_networking = true
+      provider.ssh_key_name = opts['provider']['ssh_key_name']
+      provider.image = opts['provider']['image']
+      provider.region = opts['provider']['region']
+      provider.size = opts['provider']['size']
+      provider.private_networking = opts['provider']['private_networking']
     end
-    master.vm.provision 'ansible' do |ansible|
-      ansible.playbook = 'k8s-setup/master-playbook.yml'
+    master.vm.provision opts['provisioner'][0]['name'] do |ansible|
+      ansible.playbook = opts['provisioner'][0]['master_playbook']
     end
-    master.vm.synced_folder ".", "/vagrant", type: "rsync"
-		master.vm.hostname = 'k8s-master'
+    master.vm.synced_folder ".", "/vagrant", type: opts['synced_folder']['type']
+		master.vm.hostname = opts['nodes']['master']['hostname']
   end
 end
