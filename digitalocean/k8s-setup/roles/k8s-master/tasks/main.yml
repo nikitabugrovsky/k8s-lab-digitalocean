@@ -1,3 +1,4 @@
 - import_tasks: k8s_init.yml
 - import_tasks: kubectl.yml
 - import_tasks: flannel.yml
+- import_tasks: k8s_join.yml

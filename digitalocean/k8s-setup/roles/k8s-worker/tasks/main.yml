@@ -1,0 +1,7 @@
+- name: Copy Join Command to K8S Workers
+  copy:
+    src: join-command
+    dest: "{{ ansible_env.HOME }}/join-command.sh"
+    mode: 0755
+- name: Join Worker to K8S Cluster
+  command: "sh {{ ansible_env.HOME }}/join-command.sh"

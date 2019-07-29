@@ -1,4 +1,4 @@
-# 
+#
 K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes in Vagrant on digitalocean.
 
 # Requirements
@@ -10,7 +10,6 @@ K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes in Vagrant on digitalocean.
 
 2. Vagrant >= 2.2.5([Vagrant Installation Guide](https://www.vagrantup.com/docs/installation/))
 3. Vagrant plugins:
-  - vagrant-hostmanager (``` vagrant plugin install vagrant-hostmanager ```)
   - vagrant-digitalocean (``` vagrant plugin install vagrant-digitalocean ```)
 4. VirtualBox >= 6.0.10 ([Virtual Box Download](https://www.virtualbox.org/wiki/Downloads))
 5. Ansible >= 2.8.2 ([Ansible Installation Guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html))

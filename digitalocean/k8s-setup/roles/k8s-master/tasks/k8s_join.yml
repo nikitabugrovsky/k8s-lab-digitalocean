@@ -1,0 +1,10 @@
+- name: Generate K8S Join Command
+  command: kubeadm token create --print-join-command
+  register: join_command
+
+- name: Copy K8S Join Command to Local File
+  become: false
+  local_action:
+    module: copy
+    content: "{{ join_command.stdout_lines[0] }}"
+    dest: "./join-command"

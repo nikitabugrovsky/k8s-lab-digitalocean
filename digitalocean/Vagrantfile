@@ -5,10 +5,6 @@ opts = vagrant_config(work_dir)
 check_plugins(opts['plugins'])
 
 Vagrant.configure("2") do |config|
-  config.hostmanager.enabled = opts['hostmanager']['enabled']
-  config.hostmanager.manage_guest = opts['hostmanager']['manage_guest']
-  config.hostmanager.ignore_private_ip = opts['hostmanager']['ignore_private_ip']
-  config.hostmanager.include_offline = opts['hostmanager']['include_offline']
   config.vm.define opts['nodes']['master']['hostname'] do |m|
     m.vm.provider opts['provider']['name'].to_sym do |provider, override|
       override.ssh.private_key_path = opts['provider']['private_key_path']
