@@ -2,7 +2,7 @@
 
 # Requirements
 
-1. [Digital Ocean Account with Personal Access Token](https://www.digitalocean.com/docs/api/create-personal-access-token/)
+1. [Digital Ocean Account with Personal Access Token (read & write permissions)](https://www.digitalocean.com/docs/api/create-personal-access-token/)
 2. Supported Host OS:
   - Linux
   - MacOS
