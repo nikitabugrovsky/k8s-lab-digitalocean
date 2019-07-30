@@ -1,4 +1,4 @@
-#K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes on Digital Ocean (centos 7).
+# K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes on Digital Ocean (centos 7).
 
 # Requirements
 
