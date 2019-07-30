@@ -1,3 +1,0 @@
-- import_tasks: swap.yml
-- import_tasks: sysctl.yml
-- import_tasks: k8s_install.yml

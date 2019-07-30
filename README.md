@@ -1,5 +1,4 @@
-#
-K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes on Digital Ocean (centos 7).
+#K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes on Digital Ocean (centos 7).
 
 # Requirements
 
@@ -7,7 +6,6 @@ K8S Lab: 3 nodes setup: k8s-master + 2 worker nodes on Digital Ocean (centos 7).
 2. Supported Host OS:
   - Linux
   - MacOS
-  - Windows
 
 3. Vagrant >= 2.2.5([Vagrant Installation Guide](https://www.vagrantup.com/docs/installation/))
 4. Vagrant plugins:
@@ -25,6 +23,7 @@ DO_API_KEY=<your token>
 # How to Destroy K8S Lab
 
 ```bash
+DO_API_KEY=<your token>
 ./k8s-cluster.sh delete
 ```
 
