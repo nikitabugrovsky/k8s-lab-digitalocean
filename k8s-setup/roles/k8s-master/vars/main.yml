@@ -1,4 +1,4 @@
-k8s_cluster_name: k8s-test
+k8s_cluster_name: k8s-master-0
 k8s_pod_net_cidr: 10.135.0.0/16
 k8s_flannel_cni_url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 k8s_admin_conf: /etc/kubernetes/admin.conf
