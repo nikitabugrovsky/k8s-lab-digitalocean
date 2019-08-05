@@ -1,2 +1,3 @@
 - name: Install Flannel CNI
   command: kubectl apply -f "{{ k8s_flannel_cni_url }}"
+  become_user: "{{ k8s_admin_user }}"
