@@ -14,3 +14,9 @@ sysctl_params:
   - net.ipv4.ip_forward
   - net.bridge.bridge-nf-call-iptables
   - net.bridge.bridge-nf-call-ip6tables
+
+sudoers_file: /etc/sudoers
+
+k8s_admin_group: k8s
+k8s_admin_user: k8s_admin
+

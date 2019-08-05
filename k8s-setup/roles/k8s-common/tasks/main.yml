@@ -3,3 +3,4 @@
 - import_tasks: sysctl.yml
 - import_tasks: k8s_install.yml
 - import_tasks: SELinux.yml
+- import_tasks: user.yml

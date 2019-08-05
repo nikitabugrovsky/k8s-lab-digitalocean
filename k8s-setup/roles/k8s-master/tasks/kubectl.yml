@@ -1,11 +1,12 @@
 - name: Creates Kubectl Directory
   file:
-    path: "{{ ansible_env.HOME }}/.kube"
+    path: "~/.kube"
     state: directory
+  become_user: "{{ k8s_admin_user }}"
 - name: Copy Kubectl Config
   copy:
     remote_src: yes
     src: /etc/kubernetes/admin.conf
-    dest: "{{ ansible_env.HOME }}/.kube/config"
-    owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
+    dest: "~/.kube/config"
+    owner: "{{ k8s_admin_user }}"
+    group: "{{ k8s_admin_user }}"
