@@ -7,4 +7,4 @@
   local_action:
     module: copy
     content: "{{ join_command.stdout_lines[0] }}"
-    dest: "./join-command"
+    dest: "/tmp/join-command"
