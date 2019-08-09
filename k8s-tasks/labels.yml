@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Label Worker Nodes
-      command: "kubectl label node {{ item }} node-role.kubernetes.io/worker=worker"
+      command: "kubectl label node {{ item }} node-role.kubernetes.io/worker=worker --overwrite=true"
       loop:
         - k8s-worker-0
         - k8s-worker-1
